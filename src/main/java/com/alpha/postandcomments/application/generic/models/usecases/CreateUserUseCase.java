@@ -17,13 +17,16 @@ public class CreateUserUseCase {
 
     private final PasswordEncoder passwordEncoder;
 
-    public Mono<User> save(User u, String role){
+    public Mono<User> save(User u, String role) {
 
-			return this.userRepository
-				.save(u.toBuilder()
-				.password(passwordEncoder.encode(u.getPassword()))
-				.email(u.getUsername()+"@mail.com")
-				.roles(new ArrayList<>(){{add(role);}}).build());
-	}
+        return this.userRepository
+                .save(u.toBuilder()
+                        .username(u.getUsername())
+                        .password(passwordEncoder.encode(u.getPassword()))
+                        .email(u.getEmail())
+                        .roles(new ArrayList<>() {{
+                            add(role);
+                        }}).build());
+    }
 
 }
