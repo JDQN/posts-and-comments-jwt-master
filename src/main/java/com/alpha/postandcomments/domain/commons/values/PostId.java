@@ -1,4 +1,4 @@
-package com.alpha.postandcomments.domain.values;
+package com.alpha.postandcomments.domain.commons.values;
 
 import co.com.sofka.domain.generic.Identity;
 

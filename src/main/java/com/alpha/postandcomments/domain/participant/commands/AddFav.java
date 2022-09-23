@@ -1,4 +1,4 @@
-package com.alpha.postandcomments.domain.commands;
+package com.alpha.postandcomments.domain.participant.commands;
 
 import co.com.sofka.domain.generic.Command;
 import lombok.AllArgsConstructor;
@@ -8,9 +8,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-public class CreatePostCommand extends Command {
+public class AddFav extends Command {
+
+    private String participantId;
     private String postId;
-    private String author;
-    private String title;
 
 }
