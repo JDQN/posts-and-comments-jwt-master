@@ -3,7 +3,6 @@ package com.alpha.postandcomments.domain.participant;
 import co.com.sofka.domain.generic.EventChange;
 import com.alpha.postandcomments.domain.commons.values.Content;
 import com.alpha.postandcomments.domain.commons.values.Name;
-import com.alpha.postandcomments.domain.commons.values.ParticipantId;
 import com.alpha.postandcomments.domain.commons.values.PhotoUrl;
 import com.alpha.postandcomments.domain.commons.values.PostId;
 import com.alpha.postandcomments.domain.participant.events.EventCasted;
