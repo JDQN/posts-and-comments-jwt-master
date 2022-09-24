@@ -4,13 +4,13 @@ import co.com.sofka.domain.generic.ValueObject;
 
 import java.util.Objects;
 
-public class Type implements ValueObject<String> {
+public class TypeOfEvent implements ValueObject<String> {
 
     private final String value;
 
     //creado, eliminado (canal y comentario); reacción (canal); enviado, recibido (mensaje); login (usuario).
 
-    public Type(String value) {
+    public TypeOfEvent(String value) {
         this.value = Objects.requireNonNull(value);
         if (!value.equals("Creado") && !value.equals("Eliminado")&& !value.equals("Reacción")
                 && !value.equals("recibido")&& !value.equals("LogIn")) {

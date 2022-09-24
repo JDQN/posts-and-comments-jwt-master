@@ -9,15 +9,15 @@ public class EventCasted extends DomainEvent {
     private String eventId;
     private String date;
     private String element;
-    private String type;
+    private String typeOfEvent;
     private String detail;
 
-    public EventCasted(String eventId, String date, String element, String type, String detail) {
+    public EventCasted(String eventId, String date, String element, String typeOfEvent, String detail) {
         super("com.alpha.postandcomments.domain.participant.events.EventCasted");
         this.eventId = eventId;
         this.date = date;
         this.element = element;
-        this.type = type;
+        this.typeOfEvent = typeOfEvent;
         this.detail = detail;
     }
 
@@ -33,8 +33,8 @@ public class EventCasted extends DomainEvent {
         return element;
     }
 
-    public String getType() {
-        return type;
+    public String getTypeOfEvent() {
+        return typeOfEvent;
     }
 
     public String getDetail() {
