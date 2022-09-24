@@ -15,7 +15,7 @@ import java.util.Comparator;
 import java.util.Date;
 
 @Repository
-public class MongoEventStoreRepository implements DomainEventRepository {
+public class  MongoEventStoreRepository implements DomainEventRepository {
 
     //It simplifies the use of Reactive MongoDB usage and helps to avoid common errors.
     // It executes core MongoDB workflow, leaving application code to provide Document and extract results.
