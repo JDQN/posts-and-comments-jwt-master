@@ -25,7 +25,7 @@ public class AuthHandler {
 		return route(POST("/auth/save/{role}"),
 				request -> request.bodyToMono(User.class)
 						.flatMap(user -> {
-									if (!GenericValidator.matchRegexp(user.getPassword(), "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[A-Za-z\\d#$@!%&*?]{8,16}$")) {
+									if (!GenericValidator.matchRegexp(user.getPassword(), "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[A-Za-z\\d#$@!%&*?]{8,32}$")) {
 										throw new IllegalArgumentException("Invalid password format");
 									}
 									return request.pathVariable("role").equals("admin") ?
