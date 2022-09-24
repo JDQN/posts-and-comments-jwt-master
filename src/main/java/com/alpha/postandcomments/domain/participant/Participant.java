@@ -17,7 +17,7 @@ import com.alpha.postandcomments.domain.participant.values.Element;
 import com.alpha.postandcomments.domain.participant.values.EventId;
 import com.alpha.postandcomments.domain.participant.values.MessageId;
 import com.alpha.postandcomments.domain.participant.values.Rol;
-import com.alpha.postandcomments.domain.participant.values.Type;
+import com.alpha.postandcomments.domain.participant.values.TypeOfEvent;
 
 import java.util.List;
 import java.util.Objects;
@@ -55,13 +55,13 @@ public class Participant extends AggregateEvent<ParticipantId> {
         appendChange(new FavAdded(postId.value())).apply();
     }
 
-    public void castEvent(EventId eventId, DateOfEvent date, Element element, Type type, Detail detail) {
+    public void castEvent(EventId eventId, DateOfEvent date, Element element, TypeOfEvent typeOfEvent, Detail detail) {
         Objects.requireNonNull(eventId);
         Objects.requireNonNull(date);
         Objects.requireNonNull(element);
-        Objects.requireNonNull(type);
+        Objects.requireNonNull(typeOfEvent);
         Objects.requireNonNull(detail);
-        appendChange(new EventCasted(eventId.value(), date.value(),element.value(),type.value(),detail.value())).apply();
+        appendChange(new EventCasted(eventId.value(), date.value(),element.value(), typeOfEvent.value(),detail.value())).apply();
     }
 
     public void receiveMessage(MessageId messageId, Name name, Content content){

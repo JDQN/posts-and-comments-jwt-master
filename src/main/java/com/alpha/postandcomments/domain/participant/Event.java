@@ -5,7 +5,7 @@ import com.alpha.postandcomments.domain.participant.values.DateOfEvent;
 import com.alpha.postandcomments.domain.participant.values.Detail;
 import com.alpha.postandcomments.domain.participant.values.Element;
 import com.alpha.postandcomments.domain.participant.values.EventId;
-import com.alpha.postandcomments.domain.participant.values.Type;
+import com.alpha.postandcomments.domain.participant.values.TypeOfEvent;
 import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode
@@ -14,14 +14,14 @@ public class Event extends Entity<EventId> {
 
     private DateOfEvent dateOfEvent;
     private Element element;
-    private Type type;
+    private TypeOfEvent typeOfEvent;
     private Detail detail;
 
-    public Event(EventId entityId, DateOfEvent dateOfEvent, Element element, Type type, Detail detail) {
+    public Event(EventId entityId, DateOfEvent dateOfEvent, Element element, TypeOfEvent typeOfEvent, Detail detail) {
         super(entityId);
         this.dateOfEvent = dateOfEvent;
         this.element = element;
-        this.type = type;
+        this.typeOfEvent = typeOfEvent;
         this.detail = detail;
     }
 
@@ -33,8 +33,8 @@ public class Event extends Entity<EventId> {
         return element;
     }
 
-    public Type type() {
-        return type;
+    public TypeOfEvent typeOfEvent() {
+        return typeOfEvent;
     }
 
     public Detail detail() {

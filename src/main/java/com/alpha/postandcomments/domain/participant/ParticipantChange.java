@@ -15,7 +15,7 @@ import com.alpha.postandcomments.domain.participant.values.Element;
 import com.alpha.postandcomments.domain.participant.values.EventId;
 import com.alpha.postandcomments.domain.participant.values.MessageId;
 import com.alpha.postandcomments.domain.participant.values.Rol;
-import com.alpha.postandcomments.domain.participant.values.Type;
+import com.alpha.postandcomments.domain.participant.values.TypeOfEvent;
 
 import java.util.ArrayList;
 
@@ -25,7 +25,7 @@ public class ParticipantChange extends EventChange {
         apply((ParticipantCreated event)->{
             participant.name = new Name(event.getName());
             participant.photoUrl = new PhotoUrl(event.getPhotoUrl());
-            participant.rol = new Rol(event.getPhotoUrl());
+            participant.rol = new Rol(event.getRol());
             participant.favorites = new ArrayList<>();
             participant.events = new ArrayList<>();
             participant.messages = new ArrayList<>();
@@ -36,7 +36,7 @@ public class ParticipantChange extends EventChange {
                     EventId.of(event.getEventId()),
                     new DateOfEvent(event.getDate()),
                     new Element(event.getElement()),
-                    new Type(event.getType()),
+                    new TypeOfEvent(event.getTypeOfEvent()),
                     new Detail(event.getDetail()));
             participant.events.add(participantEvent);
         });

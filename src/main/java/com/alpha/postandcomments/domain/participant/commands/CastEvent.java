@@ -15,6 +15,6 @@ public class CastEvent extends Command {
     private String participantId;
     private String date;
     private String element;
-    private String type;
+    private String typeOfEvent;
     private String detail;
 }
