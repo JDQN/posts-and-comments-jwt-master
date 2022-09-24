@@ -11,7 +11,7 @@ import com.alpha.postandcomments.domain.participant.values.DateOfEvent;
 import com.alpha.postandcomments.domain.participant.values.Detail;
 import com.alpha.postandcomments.domain.participant.values.Element;
 import com.alpha.postandcomments.domain.participant.values.EventId;
-import com.alpha.postandcomments.domain.participant.values.Type;
+import com.alpha.postandcomments.domain.participant.values.TypeOfEvent;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Flux;
@@ -35,7 +35,7 @@ public class CastEventUseCase extends UseCaseForCommand<CastEvent> {
                             EventId.of(command.getEventId()),
                             new DateOfEvent(command.getDate()),
                             new Element(command.getElement()),
-                            new Type(command.getType()),
+                            new TypeOfEvent(command.getTypeOfEvent()),
                             new Detail(command.getDetail())
                     );
                     return participant.getUncommittedChanges();
