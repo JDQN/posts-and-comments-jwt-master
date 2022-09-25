@@ -1,4 +1,5 @@
-package com.alpha.postandcomments.domain.participant.commands;
+package com.alpha.postandcomments.domain.participant.events.commands;
+
 
 import co.com.sofka.domain.generic.Command;
 import lombok.AllArgsConstructor;
@@ -8,9 +9,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-public class AddFav extends Command {
+public class ReceiveMessage extends Command {
 
+    private String messageId;
     private String participantId;
-    private String postId;
-
+    private String name;
+    private String content;
 }

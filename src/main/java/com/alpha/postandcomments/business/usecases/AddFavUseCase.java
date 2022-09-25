@@ -7,7 +7,7 @@ import com.alpha.postandcomments.business.generic.UseCaseForCommand;
 import com.alpha.postandcomments.domain.commons.values.ParticipantId;
 import com.alpha.postandcomments.domain.commons.values.PostId;
 import com.alpha.postandcomments.domain.participant.Participant;
-import com.alpha.postandcomments.domain.participant.commands.AddFav;
+import com.alpha.postandcomments.domain.participant.events.commands.AddFav;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Flux;

@@ -8,7 +8,7 @@ import com.alpha.postandcomments.domain.commons.values.Name;
 import com.alpha.postandcomments.domain.commons.values.ParticipantId;
 import com.alpha.postandcomments.domain.commons.values.PhotoUrl;
 import com.alpha.postandcomments.domain.participant.Participant;
-import com.alpha.postandcomments.domain.participant.commands.CreateParticipantCommand;
+import com.alpha.postandcomments.domain.participant.events.commands.CreateParticipantCommand;
 import com.alpha.postandcomments.domain.participant.values.Rol;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

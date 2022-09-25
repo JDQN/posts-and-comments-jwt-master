@@ -6,7 +6,7 @@ import com.alpha.postandcomments.business.gateways.EventBus;
 import com.alpha.postandcomments.business.generic.UseCaseForCommand;
 import com.alpha.postandcomments.domain.commons.values.ParticipantId;
 import com.alpha.postandcomments.domain.participant.Participant;
-import com.alpha.postandcomments.domain.participant.commands.CastEvent;
+import com.alpha.postandcomments.domain.participant.events.commands.CastEvent;
 import com.alpha.postandcomments.domain.participant.values.DateOfEvent;
 import com.alpha.postandcomments.domain.participant.values.Detail;
 import com.alpha.postandcomments.domain.participant.values.Element;

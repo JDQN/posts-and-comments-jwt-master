@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Getter
 public class AddReactionCommand extends Command {
+
     private String postId;
     private String reaction;
 
