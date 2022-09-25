@@ -9,6 +9,7 @@ import com.alpha.postandcomments.domain.post.commands.AddCommentCommand;
 import com.alpha.postandcomments.domain.post.commands.AddReactionCommand;
 import com.alpha.postandcomments.domain.post.commands.CreatePostCommand;
 import com.alpha.postandcomments.domain.post.commands.DeleteCommentCommand;
+import com.alpha.postandcomments.domain.post.commands.DeletePostCommand;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -75,6 +76,21 @@ public class CommandHandler {
         return route(
                 DELETE("delete/comment").and(accept(MediaType.APPLICATION_JSON)),
                 request -> useCase.apply(request.bodyToMono(DeleteCommentCommand.class))
+                        .collectList()
+                        .flatMap(events -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
+                                .bodyValue(events))
+                        .onErrorResume(error ->{
+                            log.error(error.getMessage());
+                            return ServerResponse.badRequest().bodyValue(error.getMessage());
+                        })
+        );
+    }
+
+    @Bean
+    public RouterFunction<ServerResponse> deletePost(DeletePostUseCase useCase){
+        return route(
+                DELETE("delete/post").and(accept(MediaType.APPLICATION_JSON)),
+                request -> useCase.apply(request.bodyToMono(DeletePostCommand.class))
                         .collectList()
                         .flatMap(events -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
                                 .bodyValue(events))
