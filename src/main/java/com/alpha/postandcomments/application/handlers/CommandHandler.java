@@ -128,7 +128,7 @@ public class CommandHandler {
     @Bean
     public RouterFunction<ServerResponse> addReactions(AddReactionUseCase useCase) {
         return route(
-                POST("/addReactions").and(accept(MediaType.APPLICATION_JSON)),
+                POST("/add/reaction").and(accept(MediaType.APPLICATION_JSON)),
                 request -> useCase.apply(
                                 request.bodyToMono(AddReactionCommand.class))
                         .collectList()
