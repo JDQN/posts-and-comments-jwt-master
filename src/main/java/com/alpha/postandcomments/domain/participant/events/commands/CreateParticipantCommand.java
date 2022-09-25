@@ -1,5 +1,4 @@
-package com.alpha.postandcomments.domain.participant.commands;
-
+package com.alpha.postandcomments.domain.participant.events.commands;
 
 import co.com.sofka.domain.generic.Command;
 import lombok.AllArgsConstructor;
@@ -9,10 +8,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-public class ReceiveMessage extends Command {
+public class CreateParticipantCommand extends Command {
 
-    private String messageId;
     private String participantId;
     private String name;
-    private String content;
+    private String photoUrl;
+    private String rol;
 }

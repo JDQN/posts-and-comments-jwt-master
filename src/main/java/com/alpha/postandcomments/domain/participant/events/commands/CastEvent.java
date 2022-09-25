@@ -1,4 +1,4 @@
-package com.alpha.postandcomments.domain.participant.commands;
+package com.alpha.postandcomments.domain.participant.events.commands;
 
 import co.com.sofka.domain.generic.Command;
 import lombok.AllArgsConstructor;
