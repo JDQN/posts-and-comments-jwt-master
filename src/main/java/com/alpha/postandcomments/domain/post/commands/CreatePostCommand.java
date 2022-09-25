@@ -12,7 +12,7 @@ public class CreatePostCommand extends Command {
     private String postId;
     private String author;
     private String title;
-    private String photoUrl;
-    private String participantId;
+		private String photoUrl;
+		private String participantId;
 
 }

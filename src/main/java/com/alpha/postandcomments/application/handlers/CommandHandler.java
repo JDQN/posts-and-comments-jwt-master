@@ -2,14 +2,11 @@ package com.alpha.postandcomments.application.handlers;
 
 
 import co.com.sofka.domain.generic.DomainEvent;
-import com.alpha.postandcomments.business.usecases.AddCommentUseCase;
-import com.alpha.postandcomments.business.usecases.CastEventUseCase;
-import com.alpha.postandcomments.business.usecases.CreateParticipantUseCase;
-import com.alpha.postandcomments.business.usecases.CreatePostUseCase;
-import com.alpha.postandcomments.business.usecases.DeleteCommentUseCase;
-import com.alpha.postandcomments.domain.participant.commands.CastEvent;
-import com.alpha.postandcomments.domain.participant.commands.CreateParticipantCommand;
+import com.alpha.postandcomments.business.usecases.*;
+import com.alpha.postandcomments.domain.participant.events.commands.CastEvent;
+import com.alpha.postandcomments.domain.participant.events.commands.CreateParticipantCommand;
 import com.alpha.postandcomments.domain.post.commands.AddCommentCommand;
+import com.alpha.postandcomments.domain.post.commands.AddReactionCommand;
 import com.alpha.postandcomments.domain.post.commands.CreatePostCommand;
 import com.alpha.postandcomments.domain.post.commands.DeleteCommentCommand;
 import lombok.extern.slf4j.Slf4j;
@@ -19,7 +16,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.ServerResponse;
-import reactor.core.publisher.Mono;
+
 
 import static org.springframework.web.reactive.function.server.RequestPredicates.DELETE;
 import static org.springframework.web.reactive.function.server.RequestPredicates.POST;
@@ -103,4 +100,17 @@ public class CommandHandler {
                        // })
         );
     }
+
+
+		@Bean
+		public RouterFunction<ServerResponse> addReactions(AddReactionUseCase useCase){
+			return route(
+				 POST("/addReactions").and(accept(MediaType.APPLICATION_JSON)),
+				 request ->  useCase.apply(
+						request.bodyToMono(AddReactionCommand.class))
+						.collectList()
+						.flatMap(event -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
+					 	.bodyValue(event))
+			);
+		}
 }
