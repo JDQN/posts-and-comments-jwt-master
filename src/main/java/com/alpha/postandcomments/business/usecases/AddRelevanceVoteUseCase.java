@@ -26,7 +26,7 @@ public class AddRelevanceVoteUseCase extends UseCaseForCommand<AddRelevanceVoteC
                 .collectList()
                 .flatMapIterable(events -> {
                     Post post = Post.from(PostId.of(command.getPostId()), events);
-                    post.addRelevanceVote(new RelevanceVote(command.getVote()));
+                    post.addRelevanceVote();
                     return post.getUncommittedChanges();
                 })
                 .map(event -> {

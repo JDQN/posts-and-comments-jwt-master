@@ -12,6 +12,5 @@ import lombok.NoArgsConstructor;
 public class AddRelevanceVoteCommand extends Command {
 
     private String postId;
-    private String vote;
 
 }
