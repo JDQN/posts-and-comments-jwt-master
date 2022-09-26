@@ -3,6 +3,7 @@ package com.alpha.postandcomments.application.handlers;
 
 import co.com.sofka.domain.generic.DomainEvent;
 import com.alpha.postandcomments.business.usecases.AddCommentUseCase;
+import com.alpha.postandcomments.business.usecases.AddFavUseCase;
 import com.alpha.postandcomments.business.usecases.AddReactionUseCase;
 import com.alpha.postandcomments.business.usecases.AddRelevanceVoteUseCase;
 import com.alpha.postandcomments.business.usecases.CastEventUseCase;
@@ -10,6 +11,7 @@ import com.alpha.postandcomments.business.usecases.CreateParticipantUseCase;
 import com.alpha.postandcomments.business.usecases.CreatePostUseCase;
 import com.alpha.postandcomments.business.usecases.DeleteCommentUseCase;
 import com.alpha.postandcomments.business.usecases.DeletePostUseCase;
+import com.alpha.postandcomments.domain.participant.events.commands.AddFav;
 import com.alpha.postandcomments.domain.participant.events.commands.CastEvent;
 import com.alpha.postandcomments.domain.participant.events.commands.CreateParticipantCommand;
 import com.alpha.postandcomments.domain.post.commands.AddCommentCommand;
@@ -133,6 +135,18 @@ public class CommandHandler {
                 POST("/add/reaction").and(accept(MediaType.APPLICATION_JSON)),
                 request -> useCase.apply(
                                 request.bodyToMono(AddReactionCommand.class))
+                        .collectList()
+                        .flatMap(event -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
+                                .bodyValue(event))
+        );
+    }
+
+    @Bean
+    public RouterFunction<ServerResponse> addFavorito(AddFavUseCase useCase) {
+        return route(
+                POST("/add/favorite").and(accept(MediaType.APPLICATION_JSON)),
+                request -> useCase.apply(
+                                request.bodyToMono(AddFav.class))
                         .collectList()
                         .flatMap(event -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
                                 .bodyValue(event))
