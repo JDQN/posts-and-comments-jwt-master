@@ -73,9 +73,9 @@ public class Post extends AggregateEvent<PostId> {
         appendChange(new ReactionAdded(reaction.value())).apply();
     }
 
-    public void addRelevanceVote(RelevanceVote relevanceVote) {
+    public void addRelevanceVote() {
         Objects.requireNonNull(relevanceVote);
-        appendChange(new RelevanceVoteAdded(relevanceVote.value())).apply();
+        appendChange(new RelevanceVoteAdded("1")).apply();
     }
 
     public void deleteComment(CommentId commentId) {
