@@ -10,8 +10,10 @@ import com.alpha.postandcomments.business.usecases.CreateParticipantUseCase;
 import com.alpha.postandcomments.business.usecases.CreatePostUseCase;
 import com.alpha.postandcomments.business.usecases.DeleteCommentUseCase;
 import com.alpha.postandcomments.business.usecases.DeletePostUseCase;
+import com.alpha.postandcomments.business.usecases.ReceiveMessageUseCase;
 import com.alpha.postandcomments.domain.participant.events.commands.CastEvent;
 import com.alpha.postandcomments.domain.participant.events.commands.CreateParticipantCommand;
+import com.alpha.postandcomments.domain.participant.events.commands.ReceiveMessage;
 import com.alpha.postandcomments.domain.post.commands.AddCommentCommand;
 import com.alpha.postandcomments.domain.post.commands.AddReactionCommand;
 import com.alpha.postandcomments.domain.post.commands.AddRelevanceVoteCommand;
@@ -145,6 +147,18 @@ public class CommandHandler {
                 POST("/add/vote").and(accept(MediaType.APPLICATION_JSON)),
                 request -> useCase.apply(
                                 request.bodyToMono(AddRelevanceVoteCommand.class))
+                        .collectList()
+                        .flatMap(event -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
+                                .bodyValue(event))
+        );
+    }
+
+    @Bean
+    public RouterFunction<ServerResponse> sendMessageToParticipant(ReceiveMessageUseCase useCase) {
+        return route(
+                POST("/send/message").and(accept(MediaType.APPLICATION_JSON)),
+                request -> useCase.apply(
+                                request.bodyToMono(ReceiveMessage.class))
                         .collectList()
                         .flatMap(event -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
                                 .bodyValue(event))
