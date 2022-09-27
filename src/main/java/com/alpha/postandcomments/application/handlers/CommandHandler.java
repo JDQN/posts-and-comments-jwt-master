@@ -87,15 +87,15 @@ public class CommandHandler {
     @Bean
     public RouterFunction<ServerResponse> deleteComment(DeleteCommentUseCase useCase) {
         return route(
-                DELETE("delete/comment").and(accept(MediaType.APPLICATION_JSON)),
-                request -> useCase.apply(request.bodyToMono(DeleteCommentCommand.class))
-                        .collectList()
-                        .flatMap(events -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
-                                .bodyValue(events))
-                        .onErrorResume(error -> {
-                            log.error(error.getMessage());
-                            return ServerResponse.badRequest().bodyValue(error.getMessage());
-                        })
+						POST("delete/comment").and(accept(MediaType.APPLICATION_JSON)),
+						request -> useCase.apply(request.bodyToMono(DeleteCommentCommand.class))
+								.collectList()
+								.flatMap(events -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
+												.bodyValue(events))
+								.onErrorResume(error -> {
+										log.error(error.getMessage());
+										return ServerResponse.badRequest().bodyValue(error.getMessage());
+								})
         );
     }
 
