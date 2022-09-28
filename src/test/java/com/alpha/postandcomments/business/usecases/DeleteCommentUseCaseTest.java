@@ -42,7 +42,7 @@ class DeleteCommentUseCaseTest {
     private final String POST_ID = "aggregateId";
 
     @Test
-    @DisplayName("AddCommentUseCase")
+    @DisplayName("DeleteCommentUseCase")
     void deleteCommentUseCase(){
 
         var postCreated = new PostCreated(
