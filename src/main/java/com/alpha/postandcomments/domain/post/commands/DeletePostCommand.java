@@ -8,6 +8,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-public class DeletePostCommand extends Command {
+public class  DeletePostCommand extends Command {
     private String postId;
 }

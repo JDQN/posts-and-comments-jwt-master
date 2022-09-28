@@ -51,10 +51,10 @@ class AddReactionUseCaseTest {
         postCreated.setAggregateRootId(POST_ID);
 
         var reactionAdded = new ReactionAdded("Me Gusta");
-        reactionAdded.setAggregateRootId(POST_ID);
+			reactionAdded.setAggregateRootId(POST_ID);
 
-        var command = new AddReactionCommand(POST_ID, reactionAdded.getReaction());
-        Mono<DomainEvent> responseExpected = Mono.just(reactionAdded);
+			var command = new AddReactionCommand(POST_ID, reactionAdded.getReaction());
+			Mono<DomainEvent> responseExpected = Mono.just(reactionAdded);
 
         BDDMockito.when(repository.findById(BDDMockito.anyString()))
                 .thenReturn(Flux.just(postCreated));
