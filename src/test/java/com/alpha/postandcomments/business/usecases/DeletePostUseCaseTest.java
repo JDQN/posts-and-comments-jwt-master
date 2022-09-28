@@ -40,7 +40,7 @@ class DeletePostUseCaseTest {
     private final String POST_ID = "aggregateId";
 
     @Test
-    @DisplayName("AddPostUseCase")
+    @DisplayName("DeletePostUseCase")
     void deletePostUseCase(){
 
         var postCreated = new PostCreated(
