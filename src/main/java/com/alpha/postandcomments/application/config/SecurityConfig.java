@@ -38,6 +38,14 @@ public class SecurityConfig {
         //Define as constants the endpoints that you have
         final String CREATE_POST = "/create/post";
         final String CREATE_USERS ="/auth/save/**";
+        final String ADD_COMMENT = "/add/comment";
+        final String DELETE_COMMENT = "delete/comment";
+        final String DELETE_POST = "delete/post/{id}";
+        final String CAST_EVENT = "cast/event";
+        final String ADD_REACTION = "/add/reaction";
+        final String ADD_FAVORITE = "/add/favorite";
+        final String ADD_RELEVANCE = "/add/vote";
+        final String SEND_MESSAGE = "/send/message";
 
         return httpSecurity.csrf(ServerHttpSecurity.CsrfSpec::disable)
                 .httpBasic(ServerHttpSecurity.HttpBasicSpec::disable)
@@ -46,11 +54,16 @@ public class SecurityConfig {
                 .securityContextRepository(NoOpServerSecurityContextRepository.getInstance())
                 .authorizeExchange( access -> access
                         .pathMatchers(CREATE_POST).hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
-                        //.pathMatchers(CREATE_USERS).hasAuthority("ROLE_ADMIN")
+                        .pathMatchers(ADD_COMMENT).hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
+                        .pathMatchers(DELETE_COMMENT).hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
+                        .pathMatchers(DELETE_POST).hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
+                        .pathMatchers(ADD_REACTION).hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
+                        .pathMatchers(ADD_FAVORITE).hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
+                        .pathMatchers(ADD_RELEVANCE).hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
+                        .pathMatchers(SEND_MESSAGE).hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
                         .anyExchange().permitAll()
                 ).addFilterAt(new JwtTokenAuthenticationFilter(tokenProvider), SecurityWebFiltersOrder.HTTP_BASIC)
                 .build();
-
     }
 
     @Bean

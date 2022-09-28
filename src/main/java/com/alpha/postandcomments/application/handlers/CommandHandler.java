@@ -123,10 +123,10 @@ public class CommandHandler {
                         .collectList()
                         .flatMap(events -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
                                 .bodyValue(events))
-                // .onErrorResume(error ->{
-                // log.error(error.getMessage());
-                // return ServerResponse.badRequest().bodyValue(error.getMessage());
-                // })
+                 .onErrorResume(error ->{
+                 log.error(error.getMessage());
+                 return ServerResponse.badRequest().bodyValue(error.getMessage());
+                 })
         );
     }
 
@@ -140,6 +140,10 @@ public class CommandHandler {
                         .collectList()
                         .flatMap(event -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
                                 .bodyValue(event))
+                        .onErrorResume(error ->{
+                            log.error(error.getMessage());
+                            return ServerResponse.badRequest().bodyValue(error.getMessage());
+                        })
         );
     }
 
@@ -152,6 +156,10 @@ public class CommandHandler {
                         .collectList()
                         .flatMap(event -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
                                 .bodyValue(event))
+                        .onErrorResume(error ->{
+                            log.error(error.getMessage());
+                            return ServerResponse.badRequest().bodyValue(error.getMessage());
+                        })
         );
     }
 
@@ -164,6 +172,10 @@ public class CommandHandler {
                         .collectList()
                         .flatMap(event -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
                                 .bodyValue(event))
+                        .onErrorResume(error ->{
+                            log.error(error.getMessage());
+                            return ServerResponse.badRequest().bodyValue(error.getMessage());
+                        })
         );
     }
 
@@ -176,6 +188,10 @@ public class CommandHandler {
                         .collectList()
                         .flatMap(event -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
                                 .bodyValue(event))
+                        .onErrorResume(error ->{
+                            log.error(error.getMessage());
+                            return ServerResponse.badRequest().bodyValue(error.getMessage());
+                        })
         );
     }
 }
