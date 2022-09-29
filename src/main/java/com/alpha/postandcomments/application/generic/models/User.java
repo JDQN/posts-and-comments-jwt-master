@@ -3,6 +3,7 @@ package com.alpha.postandcomments.application.generic.models;
 import lombok.*;
 import org.apache.commons.validator.GenericValidator;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ public class User {
     private String id;
     private String username;
     private String password;
+    @Indexed(unique = true)
     private String email;
 
     public User(String id, String username, String password, String email, boolean active, List<String> roles) {
