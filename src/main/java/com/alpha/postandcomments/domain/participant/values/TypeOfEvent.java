@@ -13,7 +13,8 @@ public class TypeOfEvent implements ValueObject<String> {
     public TypeOfEvent(String value) {
         this.value = Objects.requireNonNull(value);
         if (!value.equals("Creado") && !value.equals("Eliminado")&& !value.equals("Reacción")
-                && !value.equals("recibido")&& !value.equals("LogIn")) {
+                && !value.equals("Enviado")
+                && !value.equals("Recibido")&& !value.equals("LogIn")) {
             throw new IllegalArgumentException("Type of the event is invalid");
         }
     }
